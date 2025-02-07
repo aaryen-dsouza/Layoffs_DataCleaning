@@ -111,3 +111,13 @@ join layoffs_staging2 l2
 set l1.industry = l2.industry
 where (l1.industry is null or l1.industry = '')
 and l2.industry is not null;
+
+select * from layoffs_staging2 where total_laid_off is null and percentage_laid_off is null;
+
+select count(1) from layoffs_staging2 where total_laid_off is null and percentage_laid_off is null;
+
+delete from layoffs_staging2 where total_laid_off is null and percentage_laid_off is null;
+commit;
+
+alter table layoffs_staging2
+drop column row_num;
